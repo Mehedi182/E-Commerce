@@ -21,16 +21,16 @@
             </div> <br>
             @foreach ($category as $category)
                 <div class="row bg-white">
-                    <div class="col">
+                    <div class="col mt-3">
                         <p>{{ $category->name }}</p>
                     </div>
-                    <div class="col">
+                    <div class="col mt-1">
                         <img src="{{ asset('images/category/' . $category->icon) }}" height="40px" width="40px" alt="">
                     </div>
-                    <div class="col">
+                    <div class="col mt-3">
                         <a href="/admin/category/{{ $category->id }}/edit" >Edit</a>
                     </div>
-                    <div class="col">
+                    <div class="col mt-3">
                         <form action="/admin/category/{{ $category->id }}" method="POST">
                             @csrf
                             @method('delete')
