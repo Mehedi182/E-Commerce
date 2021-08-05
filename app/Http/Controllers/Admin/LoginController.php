@@ -26,6 +26,8 @@ class LoginController extends Controller
      *
      * @var string
      */
+   
+    
     protected $redirectTo = 'admin/home';
 
     /**
@@ -38,6 +40,7 @@ class LoginController extends Controller
         $this->middleware('guest:admin')->except('logout');
     }
     public function showLoginForm(){
+        
         return view('admin.login');
     }
 
@@ -45,5 +48,6 @@ class LoginController extends Controller
     {
         return Auth::guard('admin');
     }
+    
    
 }

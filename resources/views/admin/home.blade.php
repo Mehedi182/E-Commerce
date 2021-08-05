@@ -1,7 +1,9 @@
-@extends('layouts.app')
+@extends('admin.dashboard')
 
 @section('content')
-    <div class="container">
+<br><br>
+
+     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -20,7 +22,7 @@
             </div>
         </div>
     </div>
-    <br>
+    <br> 
     <div class="container col-4">
         <a href="category/">
             <button class="btn btn-link">Category</button>
@@ -28,5 +30,10 @@
         <a href="products/">
             <button class="btn btn-link">Products</button>
         </a>
+        
     </div>
+  
+      
+  
+   
 @endsection

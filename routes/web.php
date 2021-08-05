@@ -8,9 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
-
 Route::prefix('admin')->group(function () {
     Route::resource('/products', ProductsController::class);
     Route::resource('/category', CategoriesController::class);
