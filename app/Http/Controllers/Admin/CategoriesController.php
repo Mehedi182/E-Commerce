@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryValidationRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,7 @@ class CategoriesController extends Controller
     }
 
    
-    public function store(Request $request)
+    public function store(CategoryValidationRequest $request)
     {
         $category = new Category;
         $category->name = $request->input('name');
@@ -68,7 +69,7 @@ class CategoriesController extends Controller
     }
 
     
-    public function update(Request $request, $id)
+    public function update(CategoryValidationRequest $request, $id)
     {
         if($request->image!=""){
             $file = $request->file('image');

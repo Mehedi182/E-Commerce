@@ -32,6 +32,15 @@
                     <input class="form-control col-6" type="file" name="image"> <br>
 
                     <button class="btn btn-success py-2 col-2" type="submit">Add</button>
+                    @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                    <li style="color: red">
+                        {{ $error }}
+                    </li>
+                        
+                    @endforeach
+                        
+                    @endif
                 </form>
             </div>
         </div>

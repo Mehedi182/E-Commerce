@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\ProductValidationRequest;
 
 
 class ProductsController extends Controller
@@ -37,7 +38,7 @@ class ProductsController extends Controller
         return view('admin.products.create',[ 'category' => $category]);
     }
 
-    public function store(Request $request)
+    public function store(ProductValidationRequest $request)
     {
         $product = new Product;
         $product->name = $request->input('name');
@@ -80,7 +81,7 @@ class ProductsController extends Controller
     }
 
  
-    public function update(Request $request, $id)
+    public function update(ProductValidationRequest $request, $id)
     {
         
         if($request->image!=""){

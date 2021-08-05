@@ -32,6 +32,15 @@ body{
                     <input class="form-control col-6" type="file" name="image" value="{{ asset('images/category/' .$category->icon) }}"> <br>
 
                     <button class="btn btn-success py-2 col-2" type="submit">Update</button>
+                    @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                    <li style="color: red">
+                        {{ $error }}
+                    </li>
+                        
+                    @endforeach
+                        
+                    @endif
                 </form>
             </div>
         </div>
