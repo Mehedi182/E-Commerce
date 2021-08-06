@@ -80,10 +80,10 @@
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
      
-        <a href="#" class="sl-menu-link">
+        <a href="/admin/users" class="sl-menu-link">
           <div class="sl-menu-item">
             <i class="fas fa-users"></i>
-            <span class="menu-item-label">Customers</span>
+            <span class="menu-item-label">Users</span>
           </div><!-- menu-item -->
        
         <a href="#" class="sl-menu-link">

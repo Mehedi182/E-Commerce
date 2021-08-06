@@ -22,16 +22,8 @@
             </div>
         </div>
     </div>
-    <br> 
-    <div class="container col-4">
-        <a href="category/">
-            <button class="btn btn-link">Category</button>
-        </a>
-        <a href="products/">
-            <button class="btn btn-link">Products</button>
-        </a>
-        
-    </div>
+
+   
   
       
   
