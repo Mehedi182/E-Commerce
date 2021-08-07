@@ -35,7 +35,7 @@
                 <tbody>
                     @foreach ($customers as $customer)
 
-
+                        
                         <tr>
                             <th scope="row">{{ $i++ }}</th>
                             <td style="color: black">{{ $customer->name }} </td>

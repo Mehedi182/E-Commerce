@@ -28,6 +28,7 @@
             <table class="table table-success  table-striped table-hover">
                 <thead>
                   <tr>
+                    <th scope="col">#SL</th>
                     <th scope="col">Product Name</th>
                     <th scope="col">Description</th>
                     <th scope="col">Image</th>

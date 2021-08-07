@@ -25,7 +25,8 @@ class ProductsController extends Controller
         $products = Product::all();
 
         return view('admin.products.index',[
-            'products' =>  $products
+            'products' =>  $products,
+            'sl'=>1
         ]);
     }
 
