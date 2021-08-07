@@ -19,61 +19,59 @@
     </head>
 
     <body>
+     
+
         <div class="container col-12" style="margin-left: 300px; margin-top:100px;">
             <a href="/admin/products/create">
                 <button class="btn btn-success btn-lg">Add A product</button>
-            </a><br> <br>
-            <div class="row font-weight-bold">
-                <div class="col">Product Name</div>
-                <div class="col"> Description</div>
-                <div class="col">Image</div>
-                <div class="col">Price($)</div>
-                <div class="col">Quantity</div>
-                <div class="col">Category</div>
-                <div class="col"></div>
-                <div class="col"></div>
+            </a> <br> <br>
+            <table class="table table-success  table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    @foreach ($products as $product)
+                 
+        
+                  <tr>
+                    {{-- <th scope="row">{{ $i++ }}</th> --}}
+                    <td style="color: black">{{ $product->name }} </td>
+                    <td style="color: black">{{ $product->description }}</td>
+                    <td style="color: black"><img src="{{ asset('images/products/' . $product->image) }}" height="110px" width="110px" alt="">
+                    </td>
+                    <td style="color: black">{{ $product->price }}</td>
+                    <td style="color: black">{{ $product->amount }}</td>
+                    <td style="color: black">{{ $product->category_name }}</td>
+                    <td> <a href="/admin/products/{{ $product->id }}/edit">
+                        <button  class="btn btn-link" style="margin-top:-7px; margin-left:-12px;">Edit</button>
 
-            </div> <br>
-            @foreach ($products as $product)
+                    </a></td>
 
-
-                <div class="row mt-3 bg-white">
-                    <div class="col mt-5">
-                        {{ $product->name }}
-                    </div>
-
-                    <div class="col mt-5">
-                        {{ $product->description }}
-                    </div>
-                    <div class="col">
-                        <img src="{{ asset('images/products/' . $product->image) }}" height="110px" width="110px" alt="">
-                    </div>
-                    <div class="col mt-5">
-                        {{ $product->price }}
-                    </div>
-                    <div class="col mt-5">
-                        {{ $product->amount }}
-                    </div>
-                    <div class="col mt-5">
-                        {{ $product->category_name }}
-                    </div>
-                    <div class="col mt-5">
-                        <a href="/admin/products/{{ $product->id }}/edit">
-                            <button  class="btn btn-link" style="margin-top:-7px;">Edit</button>
-
-                        </a>
-                    </div>
-                    <div class="col mt-5">
+                    <td>
                         <form action="/admin/products/{{ $product->id }}" method="POST">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-link" style="margin-top:-7px;">Delete</button>
+                            <button type="submit" class="btn btn-link" style="margin-top:-7px; margin-left:-12px;">Delete</button>
                         </form>
-                    </div>
-                </div><br>
+                </td>
+                  </tr>
+                  
+                  @endforeach
+        
+                </tbody>
+              </table>
+            </div>
+        
 
-            @endforeach
-        </div>
     </body>
 
     </html>
