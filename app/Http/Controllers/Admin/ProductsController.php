@@ -60,7 +60,7 @@ class ProductsController extends Controller
  
          }
          $product->save();
-         return redirect('admin/products');
+         return redirect('admin/products')->with('success', 'A Product is Added');
     }
 
   
@@ -111,12 +111,12 @@ class ProductsController extends Controller
             ]);
 
         }
-        return redirect('/admin/products');
+        return redirect('/admin/products')->with('update', 'Product Updated');
     }
 
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect('/admin/products/');
+        return redirect('/admin/products/')->with('delete' , 'Product Deleted');
     }
 }

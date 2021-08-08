@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', function () {
-    return redirect('/login');
+    return redirect('/products');
 });
 Route::prefix('admin')->group(function () {
     Route::resource('/products', ProductsController::class);

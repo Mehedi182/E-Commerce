@@ -25,6 +25,22 @@
             <a href="/admin/products/create">
                 <button class="btn btn-success btn-lg">Add A product</button>
             </a> <br> <br>
+            @if (session('success'))
+            <div class="alert alert-danger" role="alert">
+              {{ session('success') }}
+            </div>
+            
+            @elseif (session('update'))
+            <div class="alert alert-danger" role="alert">
+              {{ session('update') }}
+            </div>
+            @elseif (session('delete'))
+            <div class="alert alert-danger" role="alert">
+              {{ session('delete') }}
+            </div>
+            @endif
+              
+      
             <table class="table table-success  table-striped table-hover">
                 <thead>
                   <tr>
@@ -44,7 +60,7 @@
                  
         
                   <tr>
-                    {{-- <th scope="row">{{ $i++ }}</th> --}}
+                    <th scope="row">{{ $sl++ }}</th>
                     <td style="color: black">{{ $product->name }} </td>
                     <td style="color: black">{{ $product->description }}</td>
                     <td style="color: black"><img src="{{ asset('images/products/' . $product->image) }}" height="110px" width="110px" alt="">

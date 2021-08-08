@@ -17,7 +17,8 @@ class CategoriesController extends Controller
     {
         $category = Category:: all();
         return view('admin.category.index',[
-            'category' =>  $category
+            'category' =>  $category,
+            'sl'=>1
         ]);
     }
 
@@ -50,7 +51,7 @@ class CategoriesController extends Controller
 
         }
         $category->save();
-        return redirect('admin/category');
+        return redirect('admin/category')->with('success','A Category is Added');
     }
 
    
@@ -88,7 +89,7 @@ class CategoriesController extends Controller
                 'name'=>$request->input('name'),
             ]);
         }
-        return redirect('/admin/category');
+        return redirect('/admin/category')->with('update', 'Category Updated');
 
       
     }
@@ -97,6 +98,6 @@ class CategoriesController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect('/admin/category');
+        return redirect('/admin/category')->with('delete', ' Category Deleted');
     }
 }

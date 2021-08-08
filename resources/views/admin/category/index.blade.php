@@ -27,9 +27,24 @@
             <a href="/admin/category/create">
                 <button class="btn btn-success btn-lg">Add A Category</button>
             </a> <br> <br>
+             @if (session('success'))
+            <div class="alert alert-danger" role="alert">
+              {{ session('success') }}
+            </div>
+            
+            @elseif (session('update'))
+            <div class="alert alert-danger" role="alert">
+              {{ session('update') }}
+            </div>
+            @elseif (session('delete'))
+            <div class="alert alert-danger" role="alert">
+              {{ session('delete') }}
+            </div>
+            @endif
             <table class="table table-success  table-striped">
                 <thead>
                     <tr>
+                        <th scope="col">#SL</th>
                         <th scope="col">Category Name</th>
                         <th scope="col">Category Icon</th>
                         <th scope="col">Edit</th>
@@ -39,7 +54,7 @@
                 <tbody>
                     @foreach ($category as $category)
                         <tr>
-                            {{-- <th scope="row">{{ $i++ }}</th> --}}
+                            <th scope="row">{{ $sl++ }}</th>
                             <td style="color: black">{{ $category->name }}</td>
                             <td>
                                 <img src="{{ asset('images/category/' . $category->icon) }}" height="50px" width="50px"
