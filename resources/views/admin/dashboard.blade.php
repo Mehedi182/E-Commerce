@@ -58,13 +58,13 @@
       </div><!-- input-group -->
 
       <div class="sl-sideleft-menu">
-        <a href="/admin/home" class="sl-menu-link">
+        <a href="/admin/home" class="sl-menu-link @yield('dashboard')">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
             <span class="menu-item-label">Dashboard</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <a href="/admin/products" class="sl-menu-link">
+        <a href="/admin/products" class="sl-menu-link @yield('products')">
           <div class="sl-menu-item">
             <i class="fab fa-bitbucket"></i>
 
@@ -72,11 +72,19 @@
             <span class="menu-item-label">Products</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <a href="/admin/category" class="sl-menu-link">
+        <a href="/admin/category" class="sl-menu-link @yield('category')">
           <div class="sl-menu-item">
             <i class="fas fa-columns"></i>
 
             <span class="menu-item-label">Category</span>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        </a><!-- sl-menu-link -->
+        <a href="/admin/brand" class="sl-menu-link @yield('brand')">
+          <div class="sl-menu-item">
+            <i class="fas fa-archway"></i>
+
+            <span class="menu-item-label">Brand</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
      

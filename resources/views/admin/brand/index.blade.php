@@ -1,5 +1,5 @@
 @extends('admin.dashboard')
-@section('category') active @endsection
+@section('brand') active @endsection
 @section('content')
     <html lang="en">
 
@@ -25,8 +25,8 @@
     <body>
 
         <div class="container col-12" style="margin-left: 300px; margin-top:100px;">
-            <a href="/admin/category/create">
-                <button class="btn btn-success btn-lg">Add A Category</button>
+            <a href="/admin/brand/create">
+                <button class="btn btn-success btn-lg">Add A Brand</button>
             </a> <br> <br>
              @if (session('success'))
             <div class="alert alert-danger" role="alert">
@@ -46,30 +46,26 @@
                 <thead>
                     <tr>
                         <th scope="col">#SL</th>
-                        <th scope="col">Category Name</th>
-                        <th scope="col">Category Icon</th>
+                        <th scope="col">Brand Name</th>
                         <th scope="col">Edit</th>
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($category as $category)
+                    @foreach ($brands as $brand)
                         <tr>
                             <th scope="row">{{ $sl++ }}</th>
-                            <td style="color: black">{{ $category->name }}</td>
-                            <td>
-                                <img src="{{ asset('images/category/' . $category->icon) }}" height="50px" width="50px"
-                                    alt="">
-                            </td>
+                            <td style="color: black">{{ $brand->brand_name }}</td>
+                            
 
-                            <td> <a href="/admin/category/{{ $category->id }}/edit">
+                            <td> <a href="/admin/brand/{{ $brand->id }}/edit">
                                     <button type="submit" class="btn btn-link" style="margin-top:-7px;">Edit</button>
                                 </a>
 
                                 </a></td>
 
                             <td>
-                                <form action="/admin/category/{{ $category->id }}" method="POST">
+                                <form action="/admin/brand/{{ $brand->id }}" method="POST">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-link" style="margin-top: -7px;">Delete</button>

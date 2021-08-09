@@ -1,5 +1,5 @@
 @extends('admin.dashboard')
-
+@section('dashboard') active @endsection
 @section('content')
 <br><br>
 
