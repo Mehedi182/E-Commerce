@@ -33,7 +33,7 @@ class BrandController extends Controller
    
     public function store(Request $request)
     {
-        $validate = $request->validate([
+        $request->validate([
             'brand_name'=>'required'
 
         ]);
@@ -62,14 +62,8 @@ class BrandController extends Controller
     
     public function update(Request $request, $id)
     {
-        
-        $validate = $request->validate([
-            'brand_name'=>'required'
-
-        ]);
-        
-            $brand = Brand::where('id',$id)->update([
-                'brand_name'=>$request->input('name'),
+        Brand::where('id',$id)->update([
+                'name'=>$request->input('name'),
             ]);
          
         return redirect('/admin/brand')->with('update', 'Brand Updated');

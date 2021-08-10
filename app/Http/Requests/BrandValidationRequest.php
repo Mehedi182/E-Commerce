@@ -13,7 +13,7 @@ class BrandValidationRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,10 +22,9 @@ class BrandValidationRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {        
+    {
         return [
-        'brand_name'=>'required',
-    ];
-
+            'brnad_name'=>'required',
+        ];
     }
 }
