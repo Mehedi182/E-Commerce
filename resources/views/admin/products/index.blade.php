@@ -65,7 +65,7 @@
                     <th scope="row">{{ $sl++ }}</th>
                     <td style="color: black">{{ $product->name }} </td>
                     <td style="color: black">{{ $product->description }}</td>
-                    <td style="color: black"><img src="{{ asset('images/products/' . $product->image) }}" height="110px" width="110px" alt="">
+                    <td style="color: black"><img src="{{ asset('images/products/' . $product->firstImage) }}" height="110px" width="110px" alt="">
                     </td>
                     <td style="color: black">{{ $product->price }}</td>
                     <td style="color: black">{{ $product->amount }}</td>
