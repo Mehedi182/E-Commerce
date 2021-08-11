@@ -105,8 +105,9 @@ class ProductsController extends Controller
             $file = $request->file('firstImage');
             $extension =$file->extension();
             $filename  = time() . '.' . $extension;
-            $file->move(public_path('images/product'), $filename);
-
+            $file->move(public_path('images/products'), $filename);
+            $product = Product::find($id);
+            $product->firstImage = $filename;
             Product::where('id', $id)->update([
                 'name' => $request->input('name'),
                 'description' => $request->input('description'),
