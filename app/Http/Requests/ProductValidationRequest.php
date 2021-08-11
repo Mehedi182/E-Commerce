@@ -29,6 +29,8 @@ class ProductValidationRequest extends FormRequest
             'amount'=>'required',
             'price'=>'required',
             'category_name'=>'required',
+            'image'=>'required',
+            'imagetwo'=>'required',
         ];
     }
 }

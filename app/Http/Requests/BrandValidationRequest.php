@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+
 class BrandValidationRequest extends FormRequest
 {
     /**
@@ -24,7 +25,7 @@ class BrandValidationRequest extends FormRequest
     public function rules()
     {
         return [
-            'brnad_name'=>'required',
+            'brand_name'=>'required'
         ];
     }
 }

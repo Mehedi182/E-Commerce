@@ -36,6 +36,8 @@
     </select>
 
     <input class="form-control py-2 my-2 col-5" type="file" name="image">
+    <input class="form-control py-2 my-2 col-5" type="file" name="imagetwo">
+    <input class="form-control py-2 my-2 col-5" type="file" name="imagethree">
     <button class="btn btn-success py-2 col-2" type="submit">Add</button>
     @if ($errors->any())
     @foreach ($errors->all() as $error)

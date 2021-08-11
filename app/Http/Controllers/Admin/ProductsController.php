@@ -50,13 +50,26 @@ class ProductsController extends Controller
         if($request->image!="")
         {
             $file = $request->file('image');
+            $file2 = $request->file('imagetwo');
+            $file3 = $request->file('imagethree');
             $extension = $request->image->extension();
+            $extension2 = $file2->extension();
+            $extension3 = $file3->extension();
             $filename  = time().'.'.$extension;
+            $filename2  = '2'.time().'.'.$extension;
+            $filename3  = '3'.time().'.'.$extension;
             $file->move(public_path('images/products'), $filename);//it will store the image in public by creating new folder category
+            $file2->move(public_path('images/products'), $filename2);//it will store the image in public by creating new folder category
+            $file3->move(public_path('images/products'), $filename3);//it will store the image in public by creating new folder category
+        
             $product->image = $filename;
+            $product->imagetwo = $filename2;
+            $product->imagethree = $filename3;
         }
         else {
             $product->image = " ";
+            $product->imagetwo = " ";
+            $product->imagethree = " ";
  
          }
          $product->save();
@@ -102,7 +115,7 @@ class ProductsController extends Controller
 
         }
         else{
-            $product = Product::where('id',$id)->update([
+            Product::where('id',$id)->update([
                 'name'=>$request->input('name'),
                 'description'=>$request->input('description'),
                 'price'=>$request->input('price'),
