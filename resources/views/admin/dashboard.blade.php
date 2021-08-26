@@ -111,7 +111,7 @@
        
        <!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <a href="#" class="sl-menu-link">
+        <a href="/admin/cupons" class="sl-menu-link @yield('cupons')" >
           <div class="sl-menu-item">
             <i class="fas fa-gift"></i>
             <span class="menu-item-label">Cupon</span>

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\BrandsController;
+use App\Http\Controllers\Admin\CuponsController;
 use App\Http\Controllers\Admin\LoginController;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,6 +18,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('/category', CategoriesController::class);
     Route::resource('/users', UsersController::class);
     Route::resource('/brand', BrandsController::class);
+    Route::resource('/cupons', CuponsController::class);
     Route::get('/home', [App\Http\Controllers\Admin\AdminController::class, 'index']);
     Route::get('/', [App\Http\Controllers\Admin\LoginController::class, 'showLoginForm'])->name('admin_login');
     Route::post('/', [App\Http\Controllers\Admin\LoginController::class, 'login']);
