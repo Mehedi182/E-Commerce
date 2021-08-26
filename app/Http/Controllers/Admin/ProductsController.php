@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use App\Http\Requests\ProductValidationRequest;
 
 
@@ -97,17 +98,22 @@ class ProductsController extends Controller
     }
 
 
-    public function update(ProductValidationRequest $request, $id)
+    public function update(Request $request, $id)
     {
-
+        $request->validate([
+            'name'=>'required',
+            'description'=>'required',
+            'amount'=>'required',
+            'price'=>'required',
+            'category_name'=>'required',
+        ]);
 
         if($request->file('firstImage')!=''){
             $file = $request->file('firstImage');
             $extension =$file->extension();
             $filename  = time() . '.' . $extension;
             $file->move(public_path('images/products'), $filename);
-            $product = Product::find($id);
-            $product->firstImage = $filename;
+           
             Product::where('id', $id)->update([
                 'name' => $request->input('name'),
                 'description' => $request->input('description'),
@@ -117,6 +123,7 @@ class ProductsController extends Controller
                 'firstImage' => $filename,
             ]);
         }
+      
         if ($request->file('imagetwo') != "") {
             $file = $request->file('imagetwo');
             $extension = $file->extension();
@@ -143,9 +150,14 @@ class ProductsController extends Controller
         return redirect('/admin/products')->with('update', 'Product Updated');
     }
 
-    public function destroy(Product $product)
-    {
-        $product->delete();
-        return redirect('/admin/products/')->with('delete', 'Product Deleted');
+    public function destroy($product_id){
+        $image = Product::findOrFail($product_id);
+        $firstImage = $image->firstImage;
+        $img_two = $image->imagetwo;
+        $img_three = $image->imagethree;
+        if($firstImage!="")
+        unlink("images/products/".$firstImage);
+        Product::where('id', $product_id)->delete();
+        return Redirect()->back()->with('delete','successfully Deleted');
     }
 }
