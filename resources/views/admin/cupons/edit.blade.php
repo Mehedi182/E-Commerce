@@ -28,22 +28,7 @@
 
         <div class="container row" style="margin-left: 300px; margin-top:100px;">
         
-            @if (session('success'))
-                <div class="alert alert-danger" role="alert">
-                    {{ session('success') }}
-                </div>
-
-            @elseif (session('update'))
-                <div class="alert alert-danger" role="alert">
-                    {{ session('update') }}
-                </div>
-            @elseif (session('delete'))
-                <div class="alert alert-danger" role="alert">
-                    {{ session('delete') }}
-                </div>
-            @endif
-            <br>
-
+           
             <div class="col">
 
 
@@ -61,7 +46,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($cupons as $cupon)
 
 
                             <tr>
@@ -86,7 +70,6 @@
                                 </td>
                             </tr>
 
-                        @endforeach
 
                     </tbody>
                 </table>
@@ -95,10 +78,11 @@
                 <center>
                     Add a Cupon
 
-                    <form action="/admin/cupons" method="POST">
+                    <form action="/admin/cupons/{{ $cupon->id }}" method="POST" enctype="multipart/form-data"> {{-- enctype is used to for file --}}
                         @csrf
-                        <input type="text" placeholder="Cupon Name" name="name" class="form-control py-2 my-2 col-8">
-                        <input type="text" placeholder="Cupon Code" name="code" class="form-control py-2 my-2 col-8">
+                        @method('PUT')
+                        <input type="text" placeholder="Cupon Name" name="name" value="{{ $cupon->cupon_name }}" class="form-control py-2 my-2 col-8">
+                        <input type="text" placeholder="Cupon Code" name="code" value="{{ $cupon->cupon_code }}" class="form-control py-2 my-2 col-8">
                         <input type="number" placeholder="Parcentage" name="percentage" class="form-control py-2 my-2 col-8">
                         <button class="btn btn-success py-2 col-2 mb-4 mt-2" type="submit">Add</button>
                         @if ($errors->any())

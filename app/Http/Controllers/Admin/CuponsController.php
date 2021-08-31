@@ -27,7 +27,12 @@ class CuponsController extends Controller
 
     public function store(Request $request)
     {
-        
+        $cupon = new Cupon;
+        $cupon->cupon_name = $request->input('name');
+        $cupon->cupon_code = $request->input('code');
+        $cupon->save();
+        return redirect()->back()->with('success','A Category is Added');
+
     }
 
  
@@ -39,13 +44,25 @@ class CuponsController extends Controller
  
     public function edit($id)
     {
-        
+        $cupon = Cupon::find($id);
+        return view('admin.cupons.edit',
+        [
+            'cupon'=> $cupon,
+            'sl'=>1
+        ]);
     }
 
    
     public function update(Request $request, $id)
     {
-        
+        Cupon::Where('id',$id)->update([
+            'cupon_name' => $request->input('name'),
+            'cupon_code' => $request->input('code')
+
+        ]);
+        return redirect('/admin/cupons')->with('update', 'Cupon Updated');
+
+
     }
 
    
