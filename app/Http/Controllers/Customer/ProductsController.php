@@ -13,10 +13,11 @@ class ProductsController extends Controller
     {
         $product = Product::all();
         $category = Category::all();
-        
+        $latest_product =  Product::latest()->limit(3)->get();
         return view('customer.products.index',[
             'products'=>$product,
-            'categories'=>$category
+            'categories'=>$category,
+            'latest_products'=>$latest_product
         ]);
     }
 }
