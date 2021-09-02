@@ -210,7 +210,7 @@
                                 <span>All Category</span>
                             </div>
                             @php
-                                $category = App\models\Category::latest()->get();
+                                $category = App\models\Category::orderBy('name')->get();
                             @endphp
                             <ul>
                                 @foreach ($category as $cat)

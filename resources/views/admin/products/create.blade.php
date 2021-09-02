@@ -26,7 +26,7 @@
         @csrf
     <input class="form-control py-2 my-2" type="text" placeholder="Product Name" name="name"> 
     <input class="form-control py-2 my-2" type="text" placeholder="Description" name="description">
-    <input class="form-control py-2 my-2" type="number" placeholder="Amount" name="amount">
+    <input class="form-control py-2 my-2" type="number" placeholder="Quantity" name="amount">
     <input class="form-control py-2 my-2" type="number" placeholder="Price per pieces" name="price">
     <select class="form-control py-2 my-2"  name="category_name">
         <option value="" selected="" disabled="">Select a category</option>

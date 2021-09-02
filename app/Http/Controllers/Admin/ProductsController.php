@@ -107,6 +107,14 @@ class ProductsController extends Controller
             'price'=>'required',
             'category_name'=>'required',
         ]);
+        Product::where('id', $id)->update([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'),
+            'amount' => $request->input('amount'),
+            'category_name' => $request->input('category_name'),
+        ]);
+
 
         if($request->file('firstImage')!=''){
             $file = $request->file('firstImage');
@@ -115,11 +123,6 @@ class ProductsController extends Controller
             $file->move(public_path('images/products'), $filename);
            
             Product::where('id', $id)->update([
-                'name' => $request->input('name'),
-                'description' => $request->input('description'),
-                'price' => $request->input('price'),
-                'amount' => $request->input('amount'),
-                'category_name' => $request->input('category_name'),
                 'firstImage' => $filename,
             ]);
         }
