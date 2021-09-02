@@ -48,7 +48,7 @@ class CuponsController extends Controller
         return view('admin.cupons.edit',
         [
             'cupon'=> $cupon,
-            'sl'=>1
+        
         ]);
     }
 
@@ -66,8 +66,18 @@ class CuponsController extends Controller
     }
 
    
-    public function destroy($id)
+    public function destroy(Cupon  $cupon)
     {
-        
+            $cupon->delete();  
+            return redirect('/admin/cupons')->with('delete', 'Cupon Deleted');
+ 
+    }
+    public function Active($id){
+        Cupon::find($id)->update(['status'=>1]);
+        return redirect()->back()->with('status', 'Cupon Activated');
+    }
+    public function InActive($id){
+        Cupon::find($id)->update(['status'=>0]);
+        return redirect()->back()->with('status', 'Cupon InActivated');
     }
 }

@@ -27,7 +27,7 @@
 
 
         <div class="container row" style="margin-left: 300px; margin-top:100px;">
-        
+
             @if (session('success'))
                 <div class="alert alert-danger" role="alert">
                     {{ session('success') }}
@@ -41,13 +41,20 @@
                 <div class="alert alert-danger" role="alert">
                     {{ session('delete') }}
                 </div>
+            @elseif (session('status'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('status') }}
+                    <button>
+                        <span>&times</span>
+                    </button>
+                </div>
             @endif
             <br>
 
             <div class="col">
 
 
-                <table class="table table-success table-s  table-striped table-hover"  style="text-align: center">
+                <table class="table table-success table-s  table-striped table-hover" style="text-align: center">
                     <thead>
                         <tr>
                             <th scope="col">#SL</th>
@@ -68,11 +75,22 @@
                                 <th scope="row">{{ $sl++ }}</th>
                                 <td style="color: black">{{ $cupon->cupon_name }} </td>
                                 <td style="color: black">{{ $cupon->cupon_code }}</td>
-                                <td style="color: black">{{ $cupon->status }}</td>
+                                @if ($cupon->status == 1)
+                                    <td style="color: black">
+                                        <a class="btn-link link-success" href="/admin/cupons/inactive/{{ $cupon->id }}" onclick="return confirm('Are You Sure to InActive this Cupon?')">
+                                            Active
+                                        </a>
+                                    </td>
+                                @else
+                                <td>
+                                    <a class="btn-link link-danger" href="/admin/cupons/active/{{ $cupon->id }}" onclick="return confirm('Are You Sure to Active this Cupon?')">
+                                        InActive
+                                    </a>
+                                </td>
+                                @endif
 
                                 <td> <a href="/admin/cupons/{{ $cupon->id }}/edit">
-                                        <button class="btn btn-link"
-                                            style="margin-top:-7px; ">Edit</button>
+                                        <button class="btn btn-link" style="margin-top:-7px; ">Edit</button>
 
                                     </a></td>
 
@@ -80,8 +98,7 @@
                                     <form action="/admin/cupons/{{ $cupon->id }}" method="POST">
                                         @csrf
                                         @method('delete')
-                                        <button type="submit" class="btn btn-link"
-                                            style="margin-top:-7px;">Delete</button>
+                                        <button type="submit" class="btn btn-link" style="margin-top:-7px;">Delete</button>
                                     </form>
                                 </td>
                             </tr>
@@ -99,7 +116,8 @@
                         @csrf
                         <input type="text" placeholder="Cupon Name" name="name" class="form-control py-2 my-2 col-8">
                         <input type="text" placeholder="Cupon Code" name="code" class="form-control py-2 my-2 col-8">
-                        <input type="number" placeholder="Parcentage" name="percentage" class="form-control py-2 my-2 col-8">
+                        <input type="number" placeholder="Parcentage" name="percentage"
+                            class="form-control py-2 my-2 col-8">
                         <button class="btn btn-success py-2 col-2 mb-4 mt-2" type="submit">Add</button>
                         @if ($errors->any())
                             @foreach ($errors->all() as $error)

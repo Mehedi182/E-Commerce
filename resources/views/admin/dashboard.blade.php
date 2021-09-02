@@ -331,9 +331,9 @@
       </div><!-- tab-content -->
     </div><!-- sl-sideright -->
     <!-- ########## END: RIGHT PANEL ########## --->
-
+    <div style="max-width: 100%">
     @yield('content');
-  
+  </div>
     <style>
       a{
         text-decoration:none;
