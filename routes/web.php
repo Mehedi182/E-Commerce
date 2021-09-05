@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\BrandsController;
 use App\Http\Controllers\Admin\CuponsController;
+use App\Http\Controllers\Customer\CartsController;
 use App\Http\Controllers\Admin\LoginController;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,6 +30,9 @@ Route::resource('/products', App\Http\Controllers\Customer\ProductsController::c
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+/* Cart */
+Route::post('add/to-cart/{product_id}',[CartsController::class, 'addToCart']);
+
 
 
 
