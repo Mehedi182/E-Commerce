@@ -74,7 +74,7 @@
                                         <form action="/add/to-cart/{{ $product->id }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="price" value="{{ $product->price }}">
-                                        <li><button type="submit"><i class="fa fa-shopping-cart"></i></button></li>
+                                       <button class="btn btn-success" type="submit">Add to cart</button>
 
 
                                         </form>

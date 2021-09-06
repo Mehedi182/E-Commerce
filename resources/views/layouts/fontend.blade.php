@@ -125,40 +125,52 @@
                                     @guest
                                         @if (Route::has('login'))
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                                <a class="nav-link"
+                                                    href="{{ route('login') }}">{{ __('Login') }}</a>
                                             </li>
                                         @endif
-            
+
                                         @if (Route::has('register'))
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                                <a class="nav-link"
+                                                    href="{{ route('register') }}">{{ __('Register') }}</a>
                                             </li>
                                         @endif
                                     @else
                                         <li class="nav-item dropdown">
-                                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                                 {{ Auth::user()->name }}
                                             </a>
-            
+
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                                   onclick="event.preventDefault();
-                                                                 document.getElementById('logout-form').submit();">
+                                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                                     document.getElementById('logout-form').submit();">
                                                     {{ __('Logout') }}
                                                 </a>
-            
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                    class="d-none">
                                                     @csrf
                                                 </form>
                                             </div>
                                         </li>
                                     @endguest
-                                </ul>                            </div>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        @if (session('CartSuccess'))
+            <div class="alert alert-success alert-dismissble fade show" role="alert">
+                {{ session('CartSuccess') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span arial-hidden ="true">&times;</span>
+                </button>
+            </div>
+        @endif
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
@@ -186,11 +198,19 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="header__cart">
+                        @php
+                            $total = App\Models\Cart::all()->where('user_ip', request()->ip())->sum(function($sum){
+                               return $sum->price*$sum->quantity;
+                            } );
+                            $quantity = App\Models\Cart::all()->where('user_ip', request()->ip())->sum('quantity');
+
+
+                        @endphp
                         <ul>
                             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li><a href="cart"><i class="fa fa-shopping-bag"></i> <span>{{ $quantity }}</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
+                        <div class="header__cart__price">item: <span>Tk {{ $total }}</span></div>
                     </div>
                 </div>
             </div>
@@ -214,10 +234,10 @@
                             @endphp
                             <ul>
                                 @foreach ($category as $cat)
-                                <li><a href="#">{{ $cat->name }}</a></li>
+                                    <li><a href="#">{{ $cat->name }}</a></li>
 
                                 @endforeach
-                               
+
                             </ul>
                         </div>
                     </div>
@@ -243,90 +263,100 @@
                                 </div>
                             </div>
                         </div>
-                 
-      
-    <!-- Header Section End -->
 
-    @yield('font_content')
 
-    <!-- Footer Section Begin -->
-    <footer class="footer spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="footer__about">
-                        <div class="footer__about__logo">
-                            <a href="./index.html"><img src="{{ asset('fontend') }}/img/logo.png" alt=""></a>
-                        </div>
-                        <ul>
-                            <li>Address: 60-49 Road 11378 New York</li>
-                            <li>Phone: +65 11.188.888</li>
-                            <li>Email: hello@colorlib.com</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
-                    <div class="footer__widget">
-                        <h6>Useful Links</h6>
-                        <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">About Our Shop</a></li>
-                            <li><a href="#">Secure Shopping</a></li>
-                            <li><a href="#">Delivery infomation</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Our Sitemap</a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="#">Who We Are</a></li>
-                            <li><a href="#">Our Services</a></li>
-                            <li><a href="#">Projects</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Innovation</a></li>
-                            <li><a href="#">Testimonials</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-12">
-                    <div class="footer__widget">
-                        <h6>Join Our Newsletter Now</h6>
-                        <p>Get E-mail updates about our latest shop and special offers.</p>
-                        <form action="#">
-                            <input type="text" placeholder="Enter your mail">
-                            <button type="submit" class="site-btn">Subscribe</button>
-                        </form>
-                        <div class="footer__widget__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="footer__copyright">
-                        <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
-                        <div class="footer__copyright__payment"><img src="{{ asset('fontend') }}/img/payment-item.png" alt=""></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Footer Section End -->
+                        <!-- Header Section End -->
 
-    <!-- Js Plugins -->
-    <script src="{{ asset('fontend') }}/js/jquery-3.3.1.min.js"></script>
-    <script src="{{ asset('fontend') }}/js/bootstrap.min.js"></script>
-    <script src="{{ asset('fontend') }}/js/jquery.nice-select.min.js"></script>
-    <script src="{{ asset('fontend') }}/js/jquery-ui.min.js"></script>
-    <script src="{{ asset('fontend') }}/js/jquery.slicknav.js"></script>
-    <script src="{{ asset('fontend') }}/js/mixitup.min.js"></script>
-    <script src="{{ asset('fontend') }}/js/owl.carousel.min.js"></script>
-    <script src="{{ asset('fontend') }}/js/main.js"></script>
-    
+                        @yield('font_content')
+
+                        <!-- Footer Section Begin -->
+                        <footer class="footer spad">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <div class="footer__about">
+                                            <div class="footer__about__logo">
+                                                <a href="./index.html"><img src="{{ asset('fontend') }}/img/logo.png"
+                                                        alt=""></a>
+                                            </div>
+                                            <ul>
+                                                <li>Address: 60-49 Road 11378 New York</li>
+                                                <li>Phone: +65 11.188.888</li>
+                                                <li>Email: hello@colorlib.com</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+                                        <div class="footer__widget">
+                                            <h6>Useful Links</h6>
+                                            <ul>
+                                                <li><a href="#">About Us</a></li>
+                                                <li><a href="#">About Our Shop</a></li>
+                                                <li><a href="#">Secure Shopping</a></li>
+                                                <li><a href="#">Delivery infomation</a></li>
+                                                <li><a href="#">Privacy Policy</a></li>
+                                                <li><a href="#">Our Sitemap</a></li>
+                                            </ul>
+                                            <ul>
+                                                <li><a href="#">Who We Are</a></li>
+                                                <li><a href="#">Our Services</a></li>
+                                                <li><a href="#">Projects</a></li>
+                                                <li><a href="#">Contact</a></li>
+                                                <li><a href="#">Innovation</a></li>
+                                                <li><a href="#">Testimonials</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-12">
+                                        <div class="footer__widget">
+                                            <h6>Join Our Newsletter Now</h6>
+                                            <p>Get E-mail updates about our latest shop and special offers.</p>
+                                            <form action="#">
+                                                <input type="text" placeholder="Enter your mail">
+                                                <button type="submit" class="site-btn">Subscribe</button>
+                                            </form>
+                                            <div class="footer__widget__social">
+                                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                                <a href="#"><i class="fa fa-pinterest"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="footer__copyright">
+                                            <div class="footer__copyright__text">
+                                                <p>
+                                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                                    <script>
+                                                        document.write(new Date().getFullYear());
+                                                    </script> All rights reserved | This template
+                                                    is made with <i class="fa fa-heart" aria-hidden="true"></i> by
+                                                    <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                                </p>
+                                            </div>
+                                            <div class="footer__copyright__payment"><img
+                                                    src="{{ asset('fontend') }}/img/payment-item.png" alt=""></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </footer>
+                        <!-- Footer Section End -->
+
+                        <!-- Js Plugins -->
+                        <script src="{{ asset('fontend') }}/js/jquery-3.3.1.min.js"></script>
+                        <script src="{{ asset('fontend') }}/js/bootstrap.min.js"></script>
+                        <script src="{{ asset('fontend') }}/js/jquery.nice-select.min.js"></script>
+                        <script src="{{ asset('fontend') }}/js/jquery-ui.min.js"></script>
+                        <script src="{{ asset('fontend') }}/js/jquery.slicknav.js"></script>
+                        <script src="{{ asset('fontend') }}/js/mixitup.min.js"></script>
+                        <script src="{{ asset('fontend') }}/js/owl.carousel.min.js"></script>
+                        <script src="{{ asset('fontend') }}/js/main.js"></script>
+
 
 
 
