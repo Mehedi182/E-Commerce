@@ -7,7 +7,7 @@ use App\Models\Cart;
 class CartsController extends Controller
 {
     public function addToCart(Request $request, $product_id){
-        $check = Cart::where('product_id',$product_id)->where('user_ip', request()->ip)->first();
+        $check = Cart::where('product_id',$product_id)->where('user_ip', request()->ip())->first();
         if($check){
             Cart::where('product_id',$product_id)->increment('quantity');
             return redirect()->back()->with('CartSuccess','Product Added On Cart');        
@@ -27,8 +27,18 @@ class CartsController extends Controller
 
     public function cartPage(){
         $carts = Cart::where('user_ip',request()->ip())->latest()->get();
+        $subtotal = Cart::all()->where('user_ip', request()->ip())->sum(function($sum){
+            return $sum->price*$sum->quantity;
+         } );
         return view('pages.cart',[
-            'carts'=> $carts
+            'carts'=> $carts,
+            'subtotal'=>$subtotal
+    
         ]);
+    }
+
+    public function destroy($cart_id){
+        Cart::where('id',$cart_id)->where('user_ip',request()->ip())->delete();
+        return redirect()->back()->with('CartDelete', 'Cart Product Removed');
     }
 }

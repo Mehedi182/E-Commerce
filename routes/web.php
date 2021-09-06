@@ -33,6 +33,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 /* Cart */
 Route::post('add/to-cart/{product_id}',[CartsController::class, 'addToCart']);
 Route::get('cart',[CartsController::class, 'cartPage']);
+Route::get('cart/delete/{cart_id}',[CartsController::class, 'destroy']);
+Route::post('update-to-cart',[CartsController::class, 'updatetocart']);
 
 
 
