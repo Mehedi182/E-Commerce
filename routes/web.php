@@ -24,6 +24,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/cupons/inactive/{id}', [App\Http\Controllers\Admin\CuponsController::class, 'InActive']);
     Route::get('/home', [App\Http\Controllers\Admin\AdminController::class, 'index']);
     Route::get('/', [App\Http\Controllers\Admin\LoginController::class, 'showLoginForm'])->name('admin_login');
+    //Route::get('/', [App\Http\Controllers\Admin\CuponsController::class, 'index']);
     Route::post('/', [App\Http\Controllers\Admin\LoginController::class, 'login']);
 });
 Route::resource('/products', App\Http\Controllers\Customer\ProductsController::class);
@@ -35,6 +36,7 @@ Route::post('add/to-cart/{product_id}',[CartsController::class, 'addToCart']);
 Route::get('cart',[CartsController::class, 'cartPage']);
 Route::get('cart/delete/{cart_id}',[CartsController::class, 'destroy']);
 Route::post('update-to-cart',[CartsController::class, 'updatetocart']);
+Route::post('cupon/apply',[CartsController::class, 'cuponApply']);
 
 
 

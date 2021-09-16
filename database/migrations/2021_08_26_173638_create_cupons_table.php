@@ -18,6 +18,7 @@ class CreateCuponsTable extends Migration
             $table->string('cupon_name');
             $table->string('cupon_code');
             $table->integer('status')->default(1);
+            $table->integer('percent');
             $table->timestamps();
         });
     }

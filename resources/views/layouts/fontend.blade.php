@@ -138,13 +138,12 @@
                                         @endif
                                     @else
                                         <li class="nav-item dropdown">
-                                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                                {{ Auth::user()->name }}
-                                            </a>
+                                            
+                                                <p class="fa fa-user">{{ Auth::user()->name }}</p>
+                                            
 
-                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        
+                                                <a  href="{{ route('logout') }}" onclick="event.preventDefault();
                                                                      document.getElementById('logout-form').submit();">
                                                     {{ __('Logout') }}
                                                 </a>
@@ -153,7 +152,7 @@
                                                     class="d-none">
                                                     @csrf
                                                 </form>
-                                            </div>
+                                           
                                         </li>
                                     @endguest
                                 </ul>

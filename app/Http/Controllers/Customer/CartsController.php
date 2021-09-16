@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use App\Models\Cupon;
+use Illuminate\Support\Facades\Session;
 class CartsController extends Controller
 {
     public function addToCart(Request $request, $product_id){
@@ -40,5 +42,26 @@ class CartsController extends Controller
     public function destroy($cart_id){
         Cart::where('id',$cart_id)->where('user_ip',request()->ip())->delete();
         return redirect()->back()->with('CartDelete', 'Cart Product Removed');
+    }
+    /* Cupon */
+    public function cuponApply(Request $request){
+        $cupon = $request->input('cupon');
+        $check = Cupon::where('cupon_code',$cupon)->first();
+        if($check){
+           
+            Session::put('cupons',[
+                'cupon_code'=> $check->cupon_code,
+                'percent'=> $check->percent
+            ]);
+            return redirect()->back()->with('cupon', 'Cupon Applied');
+
+
+        }
+        else{
+            return redirect()->back()->with('cupon', 'Invalid Cupon');
+        }
+      
+
+
     }
 }
