@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
+    
     /**
      * Create a new controller instance.
      *
@@ -23,6 +25,9 @@ class AdminController extends Controller
      */
     public function index()
     {
+        if (Auth::guard('admin')->check())
         return view('admin.home');
+        else   return view('admin.login');
+
     }
 }

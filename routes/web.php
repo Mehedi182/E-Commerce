@@ -22,7 +22,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('/cupons', CuponsController::class);
     Route::get('/cupons/active/{id}', [App\Http\Controllers\Admin\CuponsController::class, 'Active']);
     Route::get('/cupons/inactive/{id}', [App\Http\Controllers\Admin\CuponsController::class, 'InActive']);
-    Route::get('/home', [App\Http\Controllers\Admin\AdminController::class, 'index']);
+    Route::get('/home', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('admin_home');
     Route::get('/', [App\Http\Controllers\Admin\LoginController::class, 'showLoginForm'])->name('admin_login');
     //Route::get('/', [App\Http\Controllers\Admin\CuponsController::class, 'index']);
     Route::post('/', [App\Http\Controllers\Admin\LoginController::class, 'login']);
