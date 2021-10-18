@@ -1,43 +1,43 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\ProductsController;
-use App\Http\Controllers\Admin\CategoriesController;
-use App\Http\Controllers\Admin\UsersController;
-use App\Http\Controllers\Admin\BrandsController;
-use App\Http\Controllers\Admin\CuponsController;
-use App\Http\Controllers\Customer\CartsController;
-use App\Http\Controllers\Admin\LoginController;
-use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Route;
+
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
 
 Route::get('/', function () {
-    return redirect('/products');
+    return view('welcome');
 });
-Route::prefix('admin')->group(function () {
-    Route::resource('/products', ProductsController::class);
-    Route::resource('/category', CategoriesController::class);
-    Route::resource('/users', UsersController::class);
-    Route::resource('/brand', BrandsController::class);
-    Route::resource('/cupons', CuponsController::class);
-    Route::get('/cupons/active/{id}', [App\Http\Controllers\Admin\CuponsController::class, 'Active']);
-    Route::get('/cupons/inactive/{id}', [App\Http\Controllers\Admin\CuponsController::class, 'InActive']);
-    Route::get('/home', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('admin_home');
-    Route::get('/', [App\Http\Controllers\Admin\LoginController::class, 'showLoginForm'])->name('admin_login');
-    //Route::get('/', [App\Http\Controllers\Admin\CuponsController::class, 'index']);
-    Route::post('/', [App\Http\Controllers\Admin\LoginController::class, 'login']);
+Route::group([
+    'namespace' => 'Auth',
+], function () {
+
+    // Authentication Routes...
+    Route::get('login', [App\Http\Controllers\User\auth\LoginController::class, 'showLoginForm'])->name('login_page');
+    Route::post('login', [App\Http\Controllers\User\auth\LoginController::class, 'login'])->name('login');
+    Route::post('logout', [App\Http\Controllers\User\auth\LoginController::class, 'logout'])->name('logout');
+
+    // Registration Routes...
+    Route::get('register', [App\Http\Controllers\User\auth\RegisterController::class, 'showRegistrationForm'])->name('register_page');
+    Route::post('register', [App\Http\Controllers\User\auth\RegisterController::class, 'register'])->name('register');
+    Route::get('register/activate/{token}', [App\Http\Controllers\User\auth\RegisterController::class, 'confirm'])->name('email_confirm');
+
+    // Password Reset Routes...
+    Route::get('password/reset', [App\Http\Controllers\User\auth\ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+    Route::post('password/email', [App\Http\Controllers\User\auth\ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+    Route::get('password/reset/{token}', [App\Http\Controllers\User\auth\ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+    Route::post('password/reset',[App\Http\Controllers\User\auth\ResetPasswordController::class, 'reset']);
+
 });
-Route::resource('/products', App\Http\Controllers\Customer\ProductsController::class);
 
-Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-/* Cart */
-Route::post('add/to-cart/{product_id}',[CartsController::class, 'addToCart']);
-Route::get('cart',[CartsController::class, 'cartPage']);
-Route::get('cart/delete/{cart_id}',[CartsController::class, 'destroy']);
-Route::post('update-to-cart',[CartsController::class, 'updatetocart']);
-Route::post('cupon/apply',[CartsController::class, 'cuponApply']);
-
-
-
-
+Route::get('/home', [App\Http\Controllers\User\UserController::class, 'index'])->name('home');
