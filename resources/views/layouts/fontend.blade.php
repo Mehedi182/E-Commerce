@@ -38,8 +38,9 @@
         </div>
         <div class="humberger__menu__cart">
             <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                <li><a href="wishlist"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                <li><a href="cart"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+
             </ul>
             <div class="header__cart__price">item: <span>$150.00</span></div>
         </div>
@@ -180,7 +181,7 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Home</a></li>
+                            <li class="active"><a href="/products">Home</a></li>
                             <li><a href="./shop-grid.html">Shop</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
@@ -202,11 +203,11 @@
                                return $sum->price*$sum->quantity;
                             } );
                             $quantity = App\Models\Cart::all()->where('user_ip', request()->ip())->sum('quantity');
-
+                            $wishlist_quantity = App\Models\Wishlist::all()->where('user_id', Auth::id());
 
                         @endphp
                         <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                            <li><a href="wishlist"><i class="fa fa-heart"></i> <span>{{ count($wishlist_quantity) }}</span></a></li>
                             <li><a href="cart"><i class="fa fa-shopping-bag"></i> <span>{{ $quantity }}</span></a></li>
                         </ul>
                         <div class="header__cart__price">item: <span>Tk {{ $total }}</span></div>

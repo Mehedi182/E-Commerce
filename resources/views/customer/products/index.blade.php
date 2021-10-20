@@ -4,6 +4,14 @@
     <section>
         <section class="hero">
             <div class="container">
+                @if (session('WishSuccess'))
+                    <div class="alert alert-danger alert-dismissble fade show" role="alert">
+                        {{ session('WishSuccess') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span arial-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="hero__categories">
@@ -115,7 +123,7 @@
                                     <div class="featured__item__pic set-bg"
                                         data-setbg="{{ asset('images/products/' . $product->firstImage) }}">
                                         <ul class="featured__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                            <li><a href="/add/to-wishlist/{{ $product->id }}"><i class="fa fa-heart"></i></a></li>
                                             <li><a href="#"><i class="fa fa-retweet"></i></a></li>
                                             <form action="/add/to-cart/{{ $product->id }}" method="POST">
                                                 @csrf
@@ -127,7 +135,7 @@
                                         </ul>
                                     </div>
                                     <div class="featured__item__text">
-                                        <h6><a href="#">{{ $product->name }}</a></h6>
+                                        <h6><a href="products/details/{{ $product->id }}">{{ $product->name }}</a></h6>
                                         <h5>Tk {{ $product->price }}</h5>
                                     </div>
                                 </div>

@@ -66,10 +66,10 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <div class="breadcrumb__text">
-                            <h2>Shopping Cart</h2>
+                            <h2>Wishlist Products</h2>
                             <div class="breadcrumb__option">
                                 <a href="/products">Home</a>
-                                <span>Shopping Cart</span>
+                                <span>Wishlists</span>
                             </div>
                         </div>
                     </div>
@@ -81,15 +81,9 @@
         <!-- Shoping Cart Section Begin -->
         <section class="shoping-cart spad">
             <div class="container">
-                @if (session('CartDelete'))
+                @if (session('delete'))
                     <div class="alert alert-success alert-dismissble fade show" role="alert">
-                        {{ session('CartDelete') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span arial-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                 @elseif (session('cupon'))  <div class="alert alert-success alert-dismissble fade show" role="alert">
-                        {{ session('cupon') }}
+                        {{ session('delete') }}
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span arial-hidden="true">&times;</span>
                         </button>
@@ -103,36 +97,32 @@
                                     <tr>
                                         <th class="shoping__product">Products</th>
                                         <th>Price</th>
-                                        <th>Quantity</th>
-                                        <th>Total</th>
-                                        <th></th>
+                                        <th>Add To Cart</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($carts as $cart)
+                                    @foreach ($Wishlistproducts as $Wishproduct)
 
                                         <tr>
                                             <td class="shoping__cart__item">
-                                                <img src="{{ asset('images/products/' . $cart->product->firstImage) }}"
+                                                <img src="{{ asset('images/products/' . $Wishproduct->product->firstImage) }}"
                                                     style="height: 70px; width:70px;" alt="">
-                                                <h5>{{ $cart->product->name }}</h5>
+                                                <h5>{{ $Wishproduct->product->name }}</h5>
                                             </td>
                                             <td class="shoping__cart__price">
-                                                {{ $cart->product->price }}
+                                                {{ $Wishproduct->product->price }}
                                             </td>
                                             <td class="shoping__cart__quantity">
-                                                <div class="quantity">
-                                                    <div class="pro-qty">
-                                                        <input type="text" value="{{ $cart->quantity }}" min="1">
-                                                    </div>
+                                                <form action="/add/to-cart/{{ $Wishproduct->product->id }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="price" value="{{ $Wishproduct->product->price }}">
+                                                    <button class="btn btn-success">Add to Cart</button>
 
-                                                </div>
+                                                </form>
                                             </td>
-                                            <td class="shoping__cart__total">
-                                                {{ $cart->quantity * $cart->price }}
-                                            </td>
+                        
                                             <td class="shoping__cart__item__close">
-                                                <a href="cart/delete/{{ $cart->id }}"><span class="icon_close">
+                                                <a href="wishlist/delete/{{ $Wishproduct->id }}"><span class="icon_close">
                                                 </a>
                                                 </span>
                                             </td>
@@ -145,49 +135,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="shoping__cart__btns">
-                            <a href="/products" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
-
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        @if (Session::has('cupons'))
-                            
-                        @else
-                        <div class="shoping__continue">
-                            <div class="shoping__discount">
-                                <h5>Discount Codes</h5>
-                                <form action="cupon/apply" method="POST">
-                                    @csrf
-                                    <input type="text" placeholder="Enter your coupon code" name="cupon">
-                                    <button type="submit" class="site-btn">APPLY COUPON</button>
-                                </form>
-                            </div> <br>
-                        </div>
-                        @endif
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="shoping__checkout">
-                            <h5>Cart Total</h5>
-                            <ul>
-                                @php
-                                $discount=0;
-                            @endphp
-                                @if (Session::has('cupons'))
-
-                                <li>Subtotal <span>{{ $subtotal }}</span></li>
-                                <li>Discount <span>{{ $discount = $subtotal * session()->get('cupons')['percent']/100  }}Tk  ({{ session()->get('cupons')['percent']  }}%)</span></li>
-                                @else
-                                    <li>Subtotal <span>{{ $subtotal }}</span></li>
-                                @endif
-                                <li>Total <span>{{ $subtotal-$discount }}</span></li>
-                            </ul>
-                            <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </section>
         <!-- Shoping Cart Section End -->

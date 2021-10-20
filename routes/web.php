@@ -2,22 +2,12 @@
 
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\CartsController;
+use App\Http\Controllers\User\WishlistController;
+use App\Http\Controllers\User\ProductsController;
+use App\Models\Wishlist;
 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('welcome');
-});
 Route::group([
     'namespace' => 'Auth',
 ], function () {
@@ -39,5 +29,19 @@ Route::group([
     Route::post('password/reset',[App\Http\Controllers\User\auth\ResetPasswordController::class, 'reset']);
 
 });
+Route::get('/',[ProductsController::class, 'index']);
+Route::get('/products',[ProductsController::class, 'index']);
+Route::get('/products/details/{product_id}',[ProductsController::class, 'productDetails']);
+
+Route::post('add/to-cart/{product_id}',[CartsController::class, 'addToCart']);
+Route::get('cart',[CartsController::class, 'cartPage']);
+Route::get('cart/delete/{cart_id}',[CartsController::class, 'destroy']);
+//Route::post('update-to-cart',[CartsController::class, 'updatetocart']);
+Route::post('cupon/apply',[CartsController::class, 'cuponApply']);
+
+//Wishlist
+Route::get('add/to-wishlist/{product_id}',[WishlistController::class, 'addToWishlist']);
+Route::get('wishlist/delete/{WishproductId}',[WishlistController::class, 'destroy']);
+Route::get('wishlist',[WishlistController::class, 'wishlistPage']);
 
 Route::get('/home', [App\Http\Controllers\User\UserController::class, 'index'])->name('home');
