@@ -199,10 +199,10 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         @php
-                            $total = App\Models\Cart::all()->where('user_ip', request()->ip())->sum(function($sum){
+                            $total = App\Models\Cart::all()->where('user_id', Auth::id())->sum(function($sum){
                                return $sum->price*$sum->quantity;
                             } );
-                            $quantity = App\Models\Cart::all()->where('user_ip', request()->ip())->sum('quantity');
+                            $quantity = App\Models\Cart::all()->where('user_id', Auth::id())->sum('quantity');
                             $wishlist_quantity = App\Models\Wishlist::all()->where('user_id', Auth::id());
 
                         @endphp

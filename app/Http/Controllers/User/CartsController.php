@@ -4,11 +4,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Cupon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 class CartsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+    }
+
     public function addToCart(Request $request, $product_id){
-        $check = Cart::where('product_id',$product_id)->where('user_ip', request()->ip())->first();
+        $check = Cart::where('product_id',$product_id)->where('user_id', Auth::id())->first();
         if($check){
             Cart::where('product_id',$product_id)->increment('quantity');
             return redirect()->back()->with('CartSuccess','Product Added On Cart');        
@@ -19,7 +26,7 @@ class CartsController extends Controller
                 'product_id'=> $product_id,
                 'quantity'=> 1,
                 'price'=> $request->input('price'),
-                'user_ip'=> request()->ip(),
+                'user_id'=> Auth::id(),
             ]);
         }
         
@@ -27,8 +34,8 @@ class CartsController extends Controller
     }
 
     public function cartPage(){
-        $carts = Cart::where('user_ip',request()->ip())->latest()->get();
-        $subtotal = Cart::all()->where('user_ip', request()->ip())->sum(function($sum){
+        $carts = Cart::where('user_id',Auth::id())->latest()->get();
+        $subtotal = Cart::all()->where('user_id', Auth::id())->sum(function($sum){
             return $sum->price*$sum->quantity;
          } );
         return view('pages.cart',[
@@ -39,7 +46,7 @@ class CartsController extends Controller
     }
 
     public function destroy($cart_id){
-        Cart::where('id',$cart_id)->where('user_ip',request()->ip())->delete();
+        Cart::where('id',$cart_id)->where('user_id',Auth::id())->delete();
         return redirect()->back()->with('CartDelete', 'Cart Product Removed');
     }
     /* Cupon */

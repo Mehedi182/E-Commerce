@@ -11,7 +11,7 @@ class AdminController extends Controller
     {
         $this->middleware('auth:admin');
 
-        View::share('nav', 'home'); //ss
+        //View::share('nav', 'home'); //ss
     }
 
     public function index()
