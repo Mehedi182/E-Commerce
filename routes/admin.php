@@ -20,7 +20,7 @@ Route::group([
     Route::get('home', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('home');
     Route::get('dashboard', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('home');
     //activities
-    Route::resource('/products', ProductsController::class)->middleware('auth:admin');
+    Route::resource('/products', ProductsController::class);
     Route::resource('/category', CategoriesController::class);
     Route::resource('/users', UsersController::class);
     Route::resource('/brand', BrandsController::class);

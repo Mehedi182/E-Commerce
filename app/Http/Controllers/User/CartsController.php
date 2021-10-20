@@ -59,7 +59,11 @@ class CartsController extends Controller
         else{
             return redirect()->back()->with('cupon', 'Invalid Cupon');
         }
-      
+    }
+
+    public function cuponDelete(){
+        session()->forget('cupons');
+        return redirect()->back()->with('cupon', 'Cupon Removed');
 
 
     }

@@ -177,14 +177,17 @@
                             @endphp
                                 @if (Session::has('cupons'))
 
-                                <li>Subtotal <span>{{ $subtotal }}</span></li>
+                                <li>Subtotal <span>{{ $subtotal }}Tk</span></li>
+                                <li>Cupon <span>{{ session()->get('cupons')['cupon_code']}}
+                                    <a href="cupon/delete" class="close ml-2">&times;</a>
+                                </span></li>
                                 <li>Discount <span>{{ $discount = $subtotal * session()->get('cupons')['percent']/100  }}Tk  ({{ session()->get('cupons')['percent']  }}%)</span></li>
                                 @else
-                                    <li>Subtotal <span>{{ $subtotal }}</span></li>
+                                    <li>Subtotal <span>{{ $subtotal }}Tk</span></li>
                                 @endif
-                                <li>Total <span>{{ $subtotal-$discount }}</span></li>
+                                <li>Total <span>{{ $subtotal-$discount }}Tk</span></li>
                             </ul>
-                            <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+                            <a href="checkout" class="primary-btn">PROCEED TO CHECKOUT</a>
                         </div>
                     </div>
                 </div>

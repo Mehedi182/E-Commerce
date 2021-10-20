@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\CartsController;
+use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\ProductsController;
 use App\Models\Wishlist;
@@ -37,7 +38,13 @@ Route::post('add/to-cart/{product_id}',[CartsController::class, 'addToCart']);
 Route::get('cart',[CartsController::class, 'cartPage']);
 Route::get('cart/delete/{cart_id}',[CartsController::class, 'destroy']);
 //Route::post('update-to-cart',[CartsController::class, 'updatetocart']);
+
 Route::post('cupon/apply',[CartsController::class, 'cuponApply']);
+Route::get('cupon/delete',[CartsController::class, 'cuponDelete']);
+
+//checkout page
+Route::get('checkout',[CheckoutController::class, 'index']);
+
 
 //Wishlist
 Route::get('add/to-wishlist/{product_id}',[WishlistController::class, 'addToWishlist']);
