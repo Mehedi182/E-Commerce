@@ -88,61 +88,50 @@
                 </div>
                 <div class="checkout__form">
                     <h4>Billing Details</h4>
-                    <form action="#">
+                    <form action="place-order">
                         <div class="row">
                             <div class="col-lg-8 col-md-6">
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-12">
                                         <div class="checkout__input">
-                                            <p>Fist Name<span>*</span></p>
-                                            <input type="text">
+                                            <p> Name<span>*</span></p>
+                                            <input type="text" style="color: black" value="{{ $user->name }}" name="name">
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="checkout__input">
-                                            <p>Last Name<span>*</span></p>
-                                            <input type="text">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="checkout__input">
-                                    <p>Country<span>*</span></p>
-                                    <input type="text">
-                                </div>
-                                <div class="checkout__input">
-                                    <p>Address<span>*</span></p>
-                                    <input type="text" placeholder="Street Address" class="checkout__input__add">
-                                    <input type="text" placeholder="Apartment, suite, unite ect (optinal)">
-                                </div>
-                                <div class="checkout__input">
-                                    <p>Town/City<span>*</span></p>
-                                    <input type="text">
-                                </div>
-                                <div class="checkout__input">
-                                    <p>Country/State<span>*</span></p>
-                                    <input type="text">
-                                </div>
-                                <div class="checkout__input">
-                                    <p>Postcode / ZIP<span>*</span></p>
-                                    <input type="text">
+
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="checkout__input">
                                             <p>Phone<span>*</span></p>
-                                            <input type="text">
+                                            <input type="text" style="color: black" name="phone">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="checkout__input">
                                             <p>Email<span>*</span></p>
-                                            <input type="text">
+                                            <input type="text" style="color: black" value="{{ $user->email }}" name="email">
                                         </div>
                                     </div>
                                 </div>
-                              
-                             
-                           
+                                <div class="checkout__input">
+                                    <p>Address<span>*</span></p>
+                                    <input type="text" placeholder="Eg. Road -11, House-30, Uttara-10"
+                                        class="checkout__input__add" style="color: black" name="address">
+                                </div>
+                                <div class="checkout__input">
+                                    <p>Town/City<span>*</span></p>
+                                    <input type="text" name="city">
+                                </div>
+
+                                <div class="checkout__input">
+                                    <p>Postcode / ZIP<span>*</span></p>
+                                    <input type="text" name="post_code">
+                                </div>
+
+
+
+
                             </div>
                             <div class="col-lg-4 col-md-6">
                                 <div class="checkout__order">
@@ -152,11 +141,13 @@
                                         @foreach ($cart_products as $cart)
 
 
-                                            <li>{{ $cart->product->name }}<span>{{ $cart->product->price }}</span></li>
+                                            <li>{{ $cart->product->name }}<span>{{ $cart->product->price }} X
+                                                    {{ $cart->quantity }}</span></li>
 
                                         @endforeach
                                     </ul>
                                     <div class="checkout__order__subtotal">Subtotal <span>{{ $subtotal }}Tk</span></div>
+                                    <input type="hidden" name="subtotal" value="{{ $subtotal }}">
 
 
 
@@ -165,39 +156,43 @@
                                         <div class="checkout__order__subtotal">Discount
                                             <span>{{ $discount = ($subtotal * session()->get('cupons')['percent']) / 100 }}Tk
                                                 ({{ session()->get('cupons')['percent'] }}%)</span>
+                                            <input type="hidden" name="discount" value="{{ $discount }}">
                                         </div>
                                         <div class="checkout__order__total">Total
-                                            <span>{{ $subtotal - ($subtotal * session()->get('cupons')['percent']) / 100 }}Tk</span>
+                                            <span>{{ $total = $subtotal - ($subtotal * session()->get('cupons')['percent']) / 100 }}Tk</span>
+                                            <input type="hidden" name="total" value="{{ $total }}">
+
                                         </div>
 
                                     @else
                                         <div class="checkout__order__total">Total
                                             Total <span>{{ $subtotal }}Tk</span>
+                                            <input type="hidden" name="total" value="{{ $subtotal }}">
                                         </div>
                                     @endif
 
 
 
-                                    <div class="checkout__input__checkbox">
-                                        <label for="acc-or">
-                                            Select Payment method
-                                        </label>
-                                    </div>
+
+                                    <h5>Select Payment method</h5>
+
 
                                     <div class="checkout__input__checkbox">
                                         <label for="payment">
-                                            Check Payment
-                                            <input type="checkbox" id="payment">
+                                            Cash On Delivary
+                                            <input type="checkbox" id="payment" value="handcash" name="payment_type">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
+                                   
                                     <div class="checkout__input__checkbox">
                                         <label for="paypal">
                                             Paypal
-                                            <input type="checkbox" id="paypal">
+                                            <input type="checkbox" id="paypal" value="paypal" name="payment_type">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
+                                   
                                     <button type="submit" class="site-btn">PLACE ORDER</button>
                                 </div>
                             </div>

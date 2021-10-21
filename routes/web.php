@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\CartsController;
 use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\ProductsController;
 use App\Models\Wishlist;
@@ -42,8 +43,10 @@ Route::get('cart/delete/{cart_id}',[CartsController::class, 'destroy']);
 Route::post('cupon/apply',[CartsController::class, 'cuponApply']);
 Route::get('cupon/delete',[CartsController::class, 'cuponDelete']);
 
-//checkout page
+//checkout&order page
 Route::get('checkout',[CheckoutController::class, 'index']);
+Route::get('place-order',[OrderController::class, 'OrderStore']);
+Route::get('order/success',[OrderController::class, 'orderSuccess']);
 
 
 //Wishlist

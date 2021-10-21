@@ -63,7 +63,8 @@ class BrandsController extends Controller
      */
     public function edit(Brand $brand)
     {
-        //
+        return 'Working';
+        //return view('admin.brand.edit');
     }
 
     /**

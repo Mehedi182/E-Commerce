@@ -38,8 +38,8 @@
         </div>
         <div class="humberger__menu__cart">
             <ul>
-                <li><a href="wishlist"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="cart"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                <li><a href="/wishlist"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                <li><a href="/cart"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
 
             </ul>
             <div class="header__cart__price">item: <span>$150.00</span></div>
@@ -207,8 +207,8 @@
 
                         @endphp
                         <ul>
-                            <li><a href="wishlist"><i class="fa fa-heart"></i> <span>{{ count($wishlist_quantity) }}</span></a></li>
-                            <li><a href="cart"><i class="fa fa-shopping-bag"></i> <span>{{ $quantity }}</span></a></li>
+                            <li><a href="/wishlist"><i class="fa fa-heart"></i> <span>{{ count($wishlist_quantity) }}</span></a></li>
+                            <li><a href="/cart"><i class="fa fa-shopping-bag"></i> <span>{{ $quantity }}</span></a></li>
                         </ul>
                         <div class="header__cart__price">item: <span>Tk {{ $total }}</span></div>
                     </div>

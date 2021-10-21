@@ -11,12 +11,9 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
         <style>
-            .dropdown-menu {
-                background-color: #2f3844;
-            }
-
+         
             body {
-                background-color: #dfdfdf;
+                background-color: #f2f7ff;
             }
 
         </style>
@@ -24,10 +21,8 @@
 
     <body>
 
-        <div class="container col-12" style="margin-left: 300px; margin-top:100px;">
-            <a href="/admin/category/create">
-                <button class="btn btn-success btn-lg">Add A Category</button>
-            </a> <br> <br>
+        <div class="container col-12" >
+            
              @if (session('success'))
             <div class="alert alert-danger" role="alert">
               {{ session('success') }}
