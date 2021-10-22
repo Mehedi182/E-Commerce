@@ -30,7 +30,7 @@ class OrderController extends Controller
         foreach($carts as $cart){
         OrderItem::insert([
             'order_id'=> $order_id,
-            'product_id'=> $cart->id,
+            'product_id'=> $cart->product->id,
             'product_name'=> $cart->product->name,
             'product_quantity'=> $cart->quantity,
             'created_at'=> Carbon::now()

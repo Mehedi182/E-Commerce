@@ -91,47 +91,25 @@
                         </li>
 
 
-                        <li class="sidebar-item  has-sub @yield('cupon')">
-                            <a href="#" class='sidebar-link'>
+                        <li class="sidebar-item  @yield('cupon')">
+                            <a href="/admin/cupons" class='sidebar-link'>
                                 <i class="bi bi-gift-fill"></i>
                                 <span>Cupons</span>
                             </a>
-                            <ul class="submenu ">
-                                <li class="submenu-item ">
-                                    <a href="form-element-input.html">Add Cupon</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="form-element-input-group.html">Manage Cupons</a>
-                                </li>
-                            </ul>
                         </li>
 
                         <li class="sidebar-item  @yield('users')">
-                            <a href="/brand/users" class='sidebar-link'>
+                            <a href="/admin/users" class='sidebar-link'>
                                 <i class="bi bi-people-fill"></i>
                                 <span>Users</span>
                             </a>
                         </li>
 
-                        <li class="sidebar-item  has-sub">
-                            <a href="#" class='sidebar-link'>
+                        <li class="sidebar-item @yield('orders')">
+                            <a href="/admin/orders" class='sidebar-link'>
                                 <i class="bi bi-file-spreadsheet-fill"></i>
-                                <span>Order</span>
+                                <span>Orders</span>
                             </a>
-                            <ul class="submenu ">
-                                <li class="submenu-item ">
-                                    <a href="form-editor-quill.html">Quill</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="form-editor-ckeditor.html">CKEditor</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="form-editor-summernote.html">Summernote</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="form-editor-tinymce.html">TinyMCE</a>
-                                </li>
-                            </ul>
                         </li>
 
                         <li class="sidebar-item  ">

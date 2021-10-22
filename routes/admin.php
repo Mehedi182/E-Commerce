@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Admin\OrdersController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -27,4 +29,7 @@ Route::group([
     Route::resource('/cupons', CuponsController::class);
     Route::get('/cupons/active/{id}', [App\Http\Controllers\Admin\CuponsController::class, 'Active']);
     Route::get('/cupons/inactive/{id}', [App\Http\Controllers\Admin\CuponsController::class, 'InActive']);
+    Route::get('/orders',[OrdersController::class, 'index']);
+    Route::get('/orders/{order_id}/details',[OrdersController::class, 'orderDetails']);
+
 });
