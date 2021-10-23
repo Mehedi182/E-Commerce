@@ -1,5 +1,5 @@
 @extends('admin.dashboard')
-@section('products') active @endsection
+@section('order') active @endsection
 
 @section('content')
     <html lang="en">

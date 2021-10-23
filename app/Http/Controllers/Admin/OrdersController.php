@@ -16,7 +16,7 @@ class OrdersController extends Controller
     public function index(){
         
         $orders = Order::all();
-        return view('admin.orders.orders',[
+        return view('admin.order.orders',[
             'orders'=>$orders,
             'sl' => 1
         ]);
@@ -34,7 +34,7 @@ class OrdersController extends Controller
         $orderItems = OrderItem::all()->where('order_id',$order_id);
         $shipping = Shipping::find($order_id);
 
-        return view('admin.orders.order_details',[
+        return view('admin.order.order_details',[
             'order'=>$order,
             'order_items'=>$orderItems,
             'shipping'=>$shipping,

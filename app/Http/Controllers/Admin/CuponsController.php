@@ -30,6 +30,7 @@ class CuponsController extends Controller
         $cupon = new Cupon;
         $cupon->cupon_name = $request->input('name');
         $cupon->cupon_code = $request->input('code');
+        $cupon->percent = $request->input('parcentage');
         $cupon->save();
         return redirect()->back()->with('success','A Category is Added');
 

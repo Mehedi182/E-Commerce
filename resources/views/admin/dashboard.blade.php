@@ -104,7 +104,7 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item @yield('orders')">
+                        <li class="sidebar-item @yield('order')">
                             <a href="/admin/orders" class='sidebar-link'>
                                 <i class="bi bi-file-spreadsheet-fill"></i>
                                 <span>Orders</span>

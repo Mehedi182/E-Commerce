@@ -1,71 +1,100 @@
 @extends('admin.dashboard')
-@section('products') active @endsection
+@section('order') active @endsection
+<html>
 
-@section('content')
-    <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataTable - Mazer Admin Dashboard</title>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Products</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-        <style>
-      
-        body{
-            background-color: #f2f7ff;
-        }
-        </style>
-    </head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-    <body>
-     
+    <link rel="stylesheet" href="{{ asset('dashboard') }}/css/bootstrap.css">
+    <link rel="stylesheet" href="{{ asset('dashboard') }}/vendors/simple-datatables/style.css">
 
-        <div class="container col-12">
-            
-      
-            <table class="table table-success  table-striped table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">#SL</th>
-                    <th scope="col">Invoice No</th>
-                    <th scope="col">Payment Type</th>
-                    <th scope="col">Sub Total</th>
-                    <th scope="col">Discount</th>
-                    <th scope="col">Total</th>
-                    <th scope="col">View</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    @foreach ($orders as $order)
-                 
-        
-                  <tr>
-                    <th scope="row">{{ $sl++ }}</th>
-                    <td style="color: black">{{ $order->invoice_no }} </td>
-                    <td style="color: black">{{ $order->payment_type }}</td>
-                    <td style="color: black">{{ $order->subtotal }}</td>
-                    <td style="color: black">{{ $order->cupon_discount }}</td>
-                    <td style="color: black">{{ $order->total }}</td>
-                 
+    <link rel="stylesheet" href="{{ asset('dashboard') }}/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="{{ asset('dashboard') }}/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ asset('dashboard') }}/css/app.css">
+    <link rel="shortcut icon" href="{{ asset('dashboard') }}/images/favicon.svg" type="image/x-icon">
+</head>
 
-                    <td>
-                      <a href="/admin/orders/{{ $order->id }}/details">
-                      
-                            <button type="submit" class="btn btn-link"><i class="bi bi-eye-fill"></i>
-                            </button>
-                          </a>
-                </td>
-                  </tr>
-                  
-                  @endforeach
-        
-                </tbody>
-              </table>
+<body>
+    @section('content')
+
+        <section class="section">
+            <div class="card">
+
+                <div class="card-header">
+                    <b>All Orders</b>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped" id="table1">
+                        <thead>
+                            <tr>
+                                <th>SL</th>
+                                <th>Invoice No</th>
+                                <th>Payment Type</th>
+                                <th>Subtotal</th>
+                                <th>Discounts</th>
+                                <th>Total</th>
+                                <th>View Order</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($orders as $order)
+
+                                <tr>
+                                    <th>{{ $sl++ }}</th>
+                                    <td>{{ $order->invoice_no }} </td>
+                                    <td>{{ $order->payment_type }}</td>
+                                    <td>{{ $order->subtotal }}</td>
+                                    <td>{{ $order->cupon_discount }}</td>
+                                    <td>{{ $order->total }}</td>
+
+
+                                    <td>
+                                        <a href="/admin/orders/{{ $order->id }}/details">
+
+                                            <button type="submit" class="btn btn-link"><i class="bi bi-eye-fill"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                            @endforeach
+
+                            <!--tr>
+                                        <td>Nathaniel</td>
+                                        <td>mi.Duis@diam.edu</td>
+                                        <td>(012165) 76278</td>
+                                        <td>Grumo Appula</td>
+                                        <td>
+                                            <span class="badge bg-danger">Inactive</span>
+                                        </td>
+                                    </tr-->
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        
+        </section>
+        <script src="{{ asset('dashboard') }}/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+        <script src="{{ asset('dashboard') }}/js/bootstrap.bundle.min.js"></script>
 
-    </body>
+        <script src="{{ asset('dashboard') }}/vendors/simple-datatables/simple-datatables.js"></script>
+        <script>
+            // Simple Datatable
+            let table1 = document.querySelector('#table1');
+            let dataTable = new simpleDatatables.DataTable(table1);
+        </script>
 
-    </html>
-@endsection
+        <script src="{{ asset('dashboard') }}/js/main.js"></script>
+
+
+    @endsection
+
+</body>
+
+</html>
