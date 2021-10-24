@@ -7,16 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DataTable - Mazer Admin Dashboard</title>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/css/bootstrap.css">
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/vendors/simple-datatables/style.css">
 
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/vendors/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/vendors/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/css/app.css">
-    <link rel="shortcut icon" href="{{ asset('dashboard') }}/images/favicon.svg" type="image/x-icon">
 </head>
 
 <body>
@@ -26,7 +18,12 @@
             <div class="card">
 
                 <div class="card-header">
-                    <b>All Orders</b>
+                    <b>All Users</b>
+                    <form action="" class="input-group mt-3">
+                        <input type="search" class="form-control" placeholder="Search by name" name="search" value="{{ $search }}">
+                        <button class="input-group-text bg-info">Search</button>
+                        <p style="margin-left:1000px"></p>
+                    </form>
                 </div>
                 <div class="card-body">
                     <table class="table table-striped" id="table1">
@@ -42,7 +39,7 @@
                             @foreach ($customers  as $customer)
 
                                 <tr>
-                                    <th>{{ $i++ }}</th>
+                                    <td>{{ $sl++ }}</td>
                                     <td>{{ $customer->name }} </td>
                                     <td>{{ $customer->email }}</td>
                                     <td>

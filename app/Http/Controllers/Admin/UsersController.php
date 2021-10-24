@@ -12,12 +12,17 @@ class UsersController extends Controller
         $this->middleware('auth:admin'); 
     }
 
-    public function index()
+    public function index(Request $request)
     {
-         $customer = User:: all();
+         $search = $request->input('search');
+        if($search=="") $customer = User::all();
+        else{
+            $customer = User::where('name', "LIKE", "%$search%")->orwhere('email', "LIKE", "%$search%")->get();
+        }
         return view('admin.user',[
             'customers' =>  $customer,
-            'i'=>1
+            'search' =>$search,
+            'sl'=>1
         ]);
     }
 

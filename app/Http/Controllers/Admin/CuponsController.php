@@ -9,11 +9,16 @@ use App\Models\Cupon;
 class CuponsController extends Controller
 {
     
-    public function index()
+    public function index(Request $request)
     {
-        $cupons = Cupon::latest()->get();
+        $search = $request->input('search');
+        if($search=="") $cupons = Cupon::all();
+        else{
+            $cupons = Cupon::where('cupon_name', "LIKE", "%$search%")->orWhere('cupon_code', "LIKE", "%$search%")->get();
+        }
         return view('admin.cupons.index',[
             'cupons' =>  $cupons,
+            'search' => $search,
             'sl'=>1
         ]);
     }

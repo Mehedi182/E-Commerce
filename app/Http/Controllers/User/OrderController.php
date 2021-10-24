@@ -16,13 +16,17 @@ use Illuminate\Support\Facades\Auth;
 class OrderController extends Controller
 {
     public function OrderStore(Request $request){
+        $discount =0;
+        if($request->discount!="") $discount =$request->discount;
+        
         $order_id = Order::insertGetId([
             'user_id'=>Auth::id(),
+            'email'=>Auth::user()->email,
             'invoice_no'=>mt_rand(100000000, 999999999),
             'payment_type'=>$request->payment_type,
             'subtotal'=> $request->subtotal,
             'total'=> $request->total,
-            'cupon_discount'=>$request->discount,
+            'cupon_discount'=>$discount,
             'created_at'=> Carbon::now()
         ]);
         $carts = Cart::where('user_id',Auth::id())->latest()->get();

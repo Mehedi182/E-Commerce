@@ -13,11 +13,17 @@ use Illuminate\Support\Facades\DB;
 
 class OrdersController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         
-        $orders = Order::all();
+        $search = $request->input('search');
+        if($search=="") $orders = Order::all();
+        else{
+
+            $orders = Order::where('invoice_no', "LIKE", "%$search%")->orWhere('email', "LIKE", "%$search%")->get();
+        }
         return view('admin.order.orders',[
             'orders'=>$orders,
+            'search'=>$search,
             'sl' => 1
         ]);
     }

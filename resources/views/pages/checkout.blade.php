@@ -161,7 +161,6 @@
                                         <div class="checkout__order__total">Total
                                             <span>{{ $total = $subtotal - ($subtotal * session()->get('cupons')['percent']) / 100 }}Tk</span>
                                             <input type="hidden" name="total" value="{{ $total }}">
-
                                         </div>
 
                                     @else

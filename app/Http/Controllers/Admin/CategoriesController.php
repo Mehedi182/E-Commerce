@@ -13,11 +13,16 @@ class CategoriesController extends Controller
         $this->middleware('auth:admin'); 
     }
    
-    public function index()
+    public function index(Request $request)
     {
-        $category = Category:: all();
+        $search = $request->input('search');
+        if($search=="") $category = Category::all();
+        else{
+            $category = Category::where('name', "LIKE", "%$search%")->get();
+        }
         return view('admin.category.index',[
             'category' =>  $category,
+            'search' => $search,
             'sl'=>1
         ]);
     }

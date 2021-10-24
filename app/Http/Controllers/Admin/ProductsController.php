@@ -21,13 +21,18 @@ class ProductsController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
 
-        $products = Product::all();
-
+        $search = $request->input('search');
+        if($search=="") $products = Product::all();
+        else{
+            $products = Product::where('name', "LIKE", "%$search%")->get();
+        }
+        
         return view('admin.products.index', [
             'products' =>  $products,
+            'search'=>$search,
             'sl' => 1
         ]);
     }

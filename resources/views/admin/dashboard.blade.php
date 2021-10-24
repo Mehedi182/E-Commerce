@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('dashboard') }}/css/bootstrap.css">
+    <link rel="stylesheet" href="{{ asset('dashboard') }}/vendors/simple-datatables/style.css">
 
     <link rel="stylesheet" href="{{ asset('dashboard') }}/vendors/iconly/bold.css">
     <link rel="stylesheet" href="{{ asset('dashboard') }}/vendors/perfect-scrollbar/perfect-scrollbar.css">
@@ -268,6 +269,14 @@
     <script src="{{ asset('dashboard') }}/js/pages/dashboard.js"></script>
 
     <script src="{{ asset('dashboard') }}/js/main.js"></script>
+
+    <script src="{{ asset('dashboard') }}/vendors/simple-datatables/simple-datatables.js"></script>
+    <script>
+        // Simple Datatable
+        let table1 = document.querySelector('#table1');
+        let dataTable = new simpleDatatables.DataTable(table1);
+    </script>
+
 </body>
 
 </html>

@@ -8,14 +8,6 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/css/bootstrap.css">
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/vendors/simple-datatables/style.css">
-
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/vendors/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/vendors/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/css/app.css">
-    <link rel="shortcut icon" href="{{ asset('dashboard') }}/images/favicon.svg" type="image/x-icon">
 </head>
 <body>
     @section('content')
@@ -37,7 +29,12 @@
                 </div>
                 @endif
                 <div class="card-header">
-                    <b>All Products</b>
+                    <b>All Category</b>
+                    <form action="" class="input-group mt-3">
+                        <input type="search" class="form-control" placeholder="Search by Category Name" name="search" value="{{ $search }}">
+                        <button class="input-group-text bg-info">Search</button>
+                        <p style="margin-left:1000px"></p>
+                    </form>
                 </div>
                 <div class="card-body">
                     <table class="table table-striped" id="table1">
@@ -55,8 +52,8 @@
 
                                 @foreach ($category as $category)
                                 <tr>
-                                    <th scope="row">{{ $sl++ }}</th>
-                                    <td style="color: black">{{ $category->name }}</td>
+                                    <td>{{ $sl++ }}</td>
+                                    <td >{{ $category->name }}</td>
                                     <td>
                                         <img src="{{ asset('images/category/' . $category->icon) }}" height="50px" width="50px"
                                             alt="">
@@ -94,17 +91,7 @@
                 </div>
             </div>
         </section>
-        <script src="{{ asset('dashboard') }}/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-        <script src="{{ asset('dashboard') }}/js/bootstrap.bundle.min.js"></script>
 
-        <script src="{{ asset('dashboard') }}/vendors/simple-datatables/simple-datatables.js"></script>
-        <script>
-            // Simple Datatable
-            let table1 = document.querySelector('#table1');
-            let dataTable = new simpleDatatables.DataTable(table1);
-        </script>
-
-        <script src="assets/js/main.js"></script>
     
 
     @endsection
