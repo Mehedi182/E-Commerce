@@ -58,7 +58,7 @@ class ProductsController extends Controller
             $extension = $file->extension();
             $filename  = time() . '.' . $extension;
             $file->move(public_path('images/products'), $filename); 
-            $product->firstImage = $filename;
+            $product->imageone = $filename;
 
             if ($request->file('imagetwo') != "") {
                 $file2 = $request->file('imagetwo');
@@ -128,7 +128,7 @@ class ProductsController extends Controller
             $file->move(public_path('images/products'), $filename);
            
             Product::where('id', $id)->update([
-                'firstImage' => $filename,
+                'imageone' => $filename,
             ]);
         }
       
@@ -160,7 +160,7 @@ class ProductsController extends Controller
 
     public function destroy($product_id){
         $image = Product::findOrFail($product_id);
-        $firstImage = $image->firstImage;
+        $firstImage = $image->imageone;
         $img_two = $image->imagetwo;
         $img_three = $image->imagethree;
         if($firstImage!="")
