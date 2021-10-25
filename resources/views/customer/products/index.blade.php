@@ -77,7 +77,7 @@
 
                             <div class="col-lg-3">
                                 <div class="categories__item set-bg"
-                                    data-setbg="{{ asset('images/products/' . $product->firstImage) }}">
+                                    data-setbg="{{ asset('images/products/' . $product->imageone) }}">
                                     <h5><a href="#">{{ $product->name }}</a></h5>
                                 </div>
                             </div>
@@ -121,7 +121,7 @@
                             <div class="col-lg-3 col-md-4 col-sm-6 mix filter{{ $cat->name }}">
                                 <div class="featured__item">
                                     <div class="featured__item__pic set-bg"
-                                        data-setbg="{{ asset('images/products/' . $product->firstImage) }}">
+                                        data-setbg="{{ asset('images/products/' . $product->imageone) }}">
                                         <ul class="featured__item__pic__hover">
                                             <li><a href="/add/to-wishlist/{{ $product->id }}"><i class="fa fa-heart"></i></a></li>
                                             <li><a href="#"><i class="fa fa-retweet"></i></a></li>
