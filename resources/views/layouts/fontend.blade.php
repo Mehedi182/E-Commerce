@@ -13,14 +13,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="{{ asset('fontend') }}/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="{{ asset('fontend') }}/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="{{ asset('fontend') }}/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="{{ asset('fontend') }}/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="{{ asset('fontend') }}/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="{{ asset('fontend') }}/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="{{ asset('fontend') }}/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="{{ asset('fontend') }}/css/style.css" type="text/css">
+    <link rel="stylesheet" href="{{ secure_asset('fontend') }}/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="{{ secure_asset('fontend') }}/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="{{ secure_asset('fontend') }}/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="{{ secure_asset('fontend') }}/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="{{ secure_asset('fontend') }}/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="{{ secure_asset('fontend') }}/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="{{ secure_asset('fontend') }}/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="{{ secure_asset('fontend') }}/css/style.css" type="text/css">
 
 </head>
 
