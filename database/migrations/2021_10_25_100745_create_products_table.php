@@ -17,11 +17,12 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('description');
-            $table->mediumText('image')->nullable();
+            $table->string('category_name');
+            $table->mediumText('imageone')->nullable();
+            $table->mediumText('imagetwo')->nullable();
+            $table->mediumText('imagethree')->nullable();
             $table->integer('amount');
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-
+            $table->integer('price');
             $table->timestamps();
         });
     }
