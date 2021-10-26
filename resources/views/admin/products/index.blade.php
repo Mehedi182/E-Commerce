@@ -17,7 +17,7 @@
             <div class="card">
                 @if (session('success'))
                     <div class="alert alert-danger" role="alert">
-                        {{ session('success') }}
+                        {{ session('success') }}. <a href="/admin/products/create">Add a new Product</a>
                     </div>
 
                 @elseif (session('update'))

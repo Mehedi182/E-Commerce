@@ -57,3 +57,6 @@ Route::get('wishlist/delete/{WishproductId}',[WishlistController::class, 'destro
 Route::get('wishlist',[WishlistController::class, 'wishlistPage']);
 
 Route::get('/home', [UserController::class, 'index'])->name('home');
+Route::get('/user/profile', [UserController::class, 'profile']);
+Route::get('/user/orders', [UserController::class, 'order']);
+Route::get('/user/orders/{order_id}/details',[UserController::class, 'orderDetails']);
