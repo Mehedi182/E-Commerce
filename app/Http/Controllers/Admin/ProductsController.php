@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\ProductValidationRequest;
-use Illuminate\Support\Str;
 
 
 class ProductsController extends Controller
@@ -28,7 +27,7 @@ class ProductsController extends Controller
         $search = $request->input('search');
         if($search=="") $products = Product::all();
         else{
-            $products = Product::where(Str::upper('name'), "LIKE", Str::upper("%$search%"))->get();
+            $products = Product::where('name', "LIKE", "%$search%")->get();
         }
         
         return view('admin.products.index', [
