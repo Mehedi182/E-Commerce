@@ -4,11 +4,7 @@
     "description": "The Laravel Framework.",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
-    "league/flysystem-aws-s3-v3": "dev-master",
-    "s3": {
-        "default" : "s3",
-         "cloud" : "s3"
-        },
+    
     "require": {
         "php": "^7.3|^8.0",
         "doctrine/dbal": "^3.1",
