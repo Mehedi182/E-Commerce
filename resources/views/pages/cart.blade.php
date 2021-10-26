@@ -113,7 +113,7 @@
 
                                         <tr>
                                             <td class="shoping__cart__item">
-                                                <img src="{{ asset('images/products/' . $cart->product->firstImage) }}"
+                                                <img src="{{ asset('images/products/' . $cart->product->imageone) }}"
                                                     style="height: 70px; width:70px;" alt="">
                                                 <h5>{{ $cart->product->name }}</h5>
                                             </td>

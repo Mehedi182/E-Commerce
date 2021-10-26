@@ -182,7 +182,7 @@
 
                                         <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="{{ asset('images/products/' . $product->firstImage) }}" alt="">
+                                                <img src="{{ asset('images/products/' . $product->imageone) }}" alt="">
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6>{{ $product->name }}</h6>
@@ -198,7 +198,7 @@
 
                                         <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="{{ asset('images/products/' . $product->firstImage) }}">
+                                                <img src="{{ asset('images/products/' . $product->imageone) }}">
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6>{{ $product->name }}</h6>
@@ -222,7 +222,7 @@
                                     @foreach ($products as $product)
                                         <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="{{ asset('images/products/' . $product->firstImage) }}">
+                                                <img src="{{ asset('images/products/' . $product->imageone) }}">
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6>{{ $product->name }}</h6>
@@ -238,7 +238,7 @@
                                     @foreach ($products as $product)
                                         <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="{{ asset('images/products/' . $product->firstImage) }}">
+                                                <img src="{{ asset('images/products/' . $product->imageone) }}">
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6>{{ $product->name }}</h6>
@@ -261,7 +261,7 @@
                                     @foreach ($products as $product)
                                         <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="{{ asset('images/products/' . $product->firstImage) }}">
+                                                <img src="{{ asset('images/products/' . $product->imageone) }}">
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6>{{ $product->name }}</h6>
@@ -274,7 +274,7 @@
                                     @foreach ($latest_products as $product)
                                         <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="{{ asset('images/products/' . $product->firstImage) }}">
+                                                <img src="{{ asset('images/products/' . $product->imageone) }}">
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6>{{ $product->name }}</h6>

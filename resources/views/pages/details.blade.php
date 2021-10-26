@@ -93,11 +93,11 @@
                         <div class="product__details__pic">
                             <div class="product__details__pic__item">
                                 <img class="product__details__pic__item--large"
-                                    src="{{ asset('images/products/' . $product->firstImage) }}" alt="">
+                                    src="{{ asset('images/products/' . $product->imageone) }}" alt="">
                             </div>
                             <div class="product__details__pic__slider owl-carousel">
-                                <img data-imgbigurl="{{ asset('images/products/' . $product->firstImage) }}"
-                                    src="{{ asset('images/products/' . $product->firstImage) }}" alt="">
+                                <img data-imgbigurl="{{ asset('images/products/' . $product->imageone) }}"
+                                    src="{{ asset('images/products/' . $product->imageone) }}" alt="">
                                 <img data-imgbigurl="{{ asset('images/products/' . $product->imagetwo) }}"
                                     src="{{ asset('images/products/' . $product->imagetwo) }}" alt="">
                                 <img data-imgbigurl="{{ asset('images/products/' . $product->imagethree) }}"
