@@ -46,6 +46,7 @@
                             <tr>
                                 <th>SL</th>
                                 <th>Name</th>
+                                <th>Image</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
                                 <th>Category Name</th>
@@ -60,6 +61,8 @@
                                 <tr>
                                     <td>{{ $sl++ }}</td>
                                     <td>{{ $product->name }}</td>
+                                    <td>
+                                    <img src="{{ asset('images/products/' . $product->imageone) }}" height="110px" width="110px"></td>
                                     <td>{{ $product->price }}</td>
                                     <td>{{ $product->amount }}</td>
                                     <!--td><img src="{{ asset('images/products/' . $product->firstImage) }}" height="110px" width="110px" alt=""></td-->
