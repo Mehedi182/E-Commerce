@@ -7,22 +7,22 @@ use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\ProductsController;
-use App\Models\Wishlist;
-
+use App\Http\Controllers\User\Auth\LoginController;
+use App\Http\Controllers\User\Auth\RegisterController;
 
 Route::group([
     'namespace' => 'Auth',
 ], function () {
 
     // Authentication Routes...
-    Route::get('login', [App\Http\Controllers\User\auth\LoginController::class, 'showLoginForm'])->name('login_page');
-    Route::post('login', [App\Http\Controllers\User\auth\LoginController::class, 'login'])->name('login');
-    Route::post('logout', [App\Http\Controllers\User\auth\LoginController::class, 'logout'])->name('logout');
+    Route::get('login', [LoginController::class, 'showLoginForm'])->name('login_page');
+    Route::post('login', [LoginController::class, 'login'])->name('login');
+    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
     // Registration Routes...
-    Route::get('register', [App\Http\Controllers\User\auth\RegisterController::class, 'showRegistrationForm'])->name('register_page');
-    Route::post('register', [App\Http\Controllers\User\auth\RegisterController::class, 'register'])->name('register');
-    Route::get('register/activate/{token}', [App\Http\Controllers\User\auth\RegisterController::class, 'confirm'])->name('email_confirm');
+    Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register_page');
+    Route::post('register', [RegisterController::class, 'register'])->name('register');
+    Route::get('register/activate/{token}', [RegisterController::class, 'confirm'])->name('email_confirm');
 
     // Password Reset Routes...
     Route::get('password/reset', [App\Http\Controllers\User\auth\ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
