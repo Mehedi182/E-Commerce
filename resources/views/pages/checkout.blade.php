@@ -21,7 +21,7 @@
                                 <span>All Category</span>
                             </div>
                             @php
-                                $category = App\models\Category::orderBy('name')->get();
+                                $category = App\Models\Category::orderBy('name')->get();
                             @endphp
                             <ul>
                                 @foreach ($category as $cat)
