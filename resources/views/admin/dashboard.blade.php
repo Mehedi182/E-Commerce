@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Mazer Admin Dashboard</title>
+    <title>MH - eSHOP | Admin Dashboard</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -25,10 +25,10 @@
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
                         <div class="logo">
-                            <a href="index.html"><img src="{{ asset('dashboard') }}/images/logo/logo.png" alt="Logo" srcset=""></a>
+                            <a href="/admin"><img src="{{ asset('dashboard') }}/images/logo/logo.png" alt="Logo" style="height: 100px" srcset=""></a>
                         </div>
                         <div class="toggler">
-                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                            <a href="#" class="sidebar-hide d-xl-none d-block">ksdklfj<i class="bi bi-x bi-middle"></i></a>
                         </div>
                     </div>
                 </div>
